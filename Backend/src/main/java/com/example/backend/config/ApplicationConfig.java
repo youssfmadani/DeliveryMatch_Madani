@@ -14,10 +14,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
-@RequiredArgsConstructor
 public class ApplicationConfig {
 
     private final UtilisateurRepository utilisateurRepository;
+
+    public ApplicationConfig(UtilisateurRepository utilisateurRepository){
+        this.utilisateurRepository = utilisateurRepository;
+    }
 
     @Bean
     public UserDetailsService userDetailsService() {

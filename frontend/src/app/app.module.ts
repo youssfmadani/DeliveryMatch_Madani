@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 // Angular Material Modules
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -34,13 +36,6 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { AnnoncesListComponent } from './components/annonces/annonces-list/annonces-list.component';
-import { AnnonceFormComponent } from './components/annonces/annonce-form/annonce-form.component';
-import { DemandesListComponent } from './components/demandes/demandes-list/demandes-list.component';
-import { DemandeFormComponent } from './components/demandes/demande-form/demande-form.component';
-import { AnnonceDetailsComponent } from './components/annonces/annonce-details/annonce-details.component';
-import { EvaluationsListComponent } from './components/evaluations/evaluations-list/evaluations-list.component';
-import { EvaluationFormComponent } from './components/evaluations/evaluation-form/evaluation-form.component';
 
 // Routing
 import { AppRoutingModule } from './app-routing.module';
@@ -53,20 +48,15 @@ import { AppRoutingModule } from './app-routing.module';
     DashboardComponent,
     LoginComponent,
     RegisterComponent,
-    ProfileComponent,
-    AnnoncesListComponent,
-    AnnonceFormComponent,
-    DemandesListComponent,
-    DemandeFormComponent,
-    AnnonceDetailsComponent,
-    EvaluationsListComponent,
-    EvaluationFormComponent
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     HttpClientModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    RouterModule,
     AppRoutingModule,
     MatToolbarModule,
     MatSidenavModule,

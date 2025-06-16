@@ -43,4 +43,68 @@ public class Demande {
 
     @OneToOne(mappedBy = "demande")
     private Evaluation evaluation;
-} 
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Utilisateur getExpediteur() {
+        return expediteur;
+    }
+
+    public void setExpediteur(Utilisateur expediteur) {
+        this.expediteur = expediteur;
+    }
+
+    public Annonce getAnnonce() {
+        return annonce;
+    }
+
+    public void setAnnonce(Annonce annonce) {
+        this.annonce = annonce;
+    }
+
+    public StatutDemande getStatut() {
+        return statut;
+    }
+
+    public void setStatut(StatutDemande statut) {
+        this.statut = statut;
+    }
+
+    public String getColisDimensions() {
+        return colisDimensions;
+    }
+
+    public void setColisDimensions(String colisDimensions) {
+        this.colisDimensions = colisDimensions;
+    }
+
+    public Float getPoids() {
+        return poids;
+    }
+
+    public void setPoids(Float poids) {
+        this.poids = poids;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Evaluation getEvaluation() {
+        return evaluation;
+    }
+
+    public void setEvaluation(Evaluation evaluation) {
+        this.evaluation = evaluation;
+    }
+}

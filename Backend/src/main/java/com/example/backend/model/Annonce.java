@@ -55,4 +55,84 @@ public class Annonce {
 
     @OneToMany(mappedBy = "annonce")
     private List<Demande> demandes;
-} 
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Utilisateur getConducteur() {
+        return conducteur;
+    }
+
+    public void setConducteur(Utilisateur conducteur) {
+        this.conducteur = conducteur;
+    }
+
+    public String getDepart() {
+        return depart;
+    }
+
+    public void setDepart(String depart) {
+        this.depart = depart;
+    }
+
+    public List<String> getEtapes() {
+        return etapes;
+    }
+
+    public void setEtapes(List<String> etapes) {
+        this.etapes = etapes;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+
+    public LocalDateTime getDateTrajet() {
+        return dateTrajet;
+    }
+
+    public void setDateTrajet(LocalDateTime dateTrajet) {
+        this.dateTrajet = dateTrajet;
+    }
+
+    public String getDimensionsMax() {
+        return dimensionsMax;
+    }
+
+    public void setDimensionsMax(String dimensionsMax) {
+        this.dimensionsMax = dimensionsMax;
+    }
+
+    public String getTypeMarchandise() {
+        return typeMarchandise;
+    }
+
+    public void setTypeMarchandise(String typeMarchandise) {
+        this.typeMarchandise = typeMarchandise;
+    }
+
+    public Float getCapaciteDisponible() {
+        return capaciteDisponible;
+    }
+
+    public void setCapaciteDisponible(Float capaciteDisponible) {
+        this.capaciteDisponible = capaciteDisponible;
+    }
+
+    public List<Demande> getDemandes() {
+        return demandes;
+    }
+
+    public void setDemandes(List<Demande> demandes) {
+        this.demandes = demandes;
+    }
+}

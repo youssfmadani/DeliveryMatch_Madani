@@ -1,10 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import { AnnonceService, Annonce } from '../../services/annonce.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { AnnonceService, Annonce } from '../../../services/annonce.service';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-annonces-list',
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule
+  ],
   template: `
     <div class="annonces-list-container">
       <mat-card class="search-card">

@@ -5,15 +5,18 @@ import { environment } from '../../environments/environment';
 
 export interface Annonce {
   id: number;
-  conducteurId: number;
   depart: string;
   destination: string;
   dateDepart: Date;
   typeMarchandise: string;
   capacite: number;
   prix: number;
-  description: string;
-  statut: string;
+  conducteur: {
+    id: number;
+    nom: string;
+    prenom: string;
+    email: string;
+  };
 }
 
 @Injectable({
@@ -22,7 +25,19 @@ export interface Annonce {
 export class AnnonceService {
   private apiUrl = `${environment.apiUrl}/annonces`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
+
+  getAllAnnonces(): Observable<Annonce[]> {
+    return this.http.get<Annonce[]>(this.apiUrl);
+  }
+
+  getAnnonceById(id: number): Observable<Annonce> {
+    return this.http.get<Annonce>(`${this.apiUrl}/${id}`);
+  }
+
+  searchAnnonces(params: any): Observable<Annonce[]> {
+    return this.http.get<Annonce[]>(this.apiUrl, { params });
+  }
 
   createAnnonce(annonce: Partial<Annonce>): Observable<Annonce> {
     return this.http.post<Annonce>(this.apiUrl, annonce);
@@ -36,27 +51,11 @@ export class AnnonceService {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
-  getAnnonceById(id: number): Observable<Annonce> {
-    return this.http.get<Annonce>(`${this.apiUrl}/${id}`);
-  }
-
-  getAllAnnonces(): Observable<Annonce[]> {
-    return this.http.get<Annonce[]>(this.apiUrl);
-  }
-
   getAnnoncesByConducteur(conducteurId: number): Observable<Annonce[]> {
     return this.http.get<Annonce[]>(`${this.apiUrl}/conducteur/${conducteurId}`);
   }
 
   getAnnoncesFutures(): Observable<Annonce[]> {
     return this.http.get<Annonce[]>(`${this.apiUrl}/futures`);
-  }
-
-  searchAnnonces(params: {
-    destination?: string;
-    typeMarchandise?: string;
-    capaciteMin?: number;
-  }): Observable<Annonce[]> {
-    return this.http.get<Annonce[]>(`${this.apiUrl}/search`, { params: params as any });
   }
 } 

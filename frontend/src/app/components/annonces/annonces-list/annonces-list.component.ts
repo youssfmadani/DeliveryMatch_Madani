@@ -165,4 +165,4 @@ export class AnnoncesListComponent implements OnInit {
       this.annonces = data;
     });
   }
-} 
+}

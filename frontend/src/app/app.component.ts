@@ -1,51 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
-  template: `
-    <div class="app-container">
-      <app-navbar *ngIf="isAuthenticated"></app-navbar>
-      
-      <div class="main-content" [class.authenticated]="isAuthenticated">
-        <app-sidenav *ngIf="isAuthenticated"></app-sidenav>
-        <router-outlet></router-outlet>
-      </div>
-    </div>
-  `,
-  styles: [`
-    .app-container {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .main-content {
-      flex: 1;
-    }
-
-    .main-content.authenticated {
-      margin-top: 64px;
-    }
-
-    @media (max-width: 600px) {
-      .main-content.authenticated {
-        margin-top: 56px;
-      }
-    }
-  `]
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   isAuthenticated = false;
 
-  constructor(
-    private authService: AuthService,
-    private router: Router
-  ) {
+  constructor(private authService: AuthService, private router: Router) {}
+
+  ngOnInit() {
     this.authService.currentUser$.subscribe(user => {
       this.isAuthenticated = !!user;
-      if (!user && !this.router.url.includes('/login') && !this.router.url.includes('/register')) {
+      if (!user && this.router.url !== '/login' && this.router.url !== '/register') {
         this.router.navigate(['/login']);
       }
     });

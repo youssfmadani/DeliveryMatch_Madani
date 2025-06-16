@@ -5,6 +5,7 @@ import { RegisterComponent } from './components/auth/register/register.component
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AnnoncesListComponent } from './components/annonces/annonces-list/annonces-list.component';
 import { AnnonceFormComponent } from './components/annonces/annonce-form/annonce-form.component';
+import { AnnonceDetailsComponent } from './components/annonces/annonce-details/annonce-details.component';
 import { DemandesListComponent } from './components/demandes/demandes-list/demandes-list.component';
 import { DemandeFormComponent } from './components/demandes/demande-form/demande-form.component';
 import { ProfileComponent } from './components/profile/profile.component';
@@ -24,7 +25,8 @@ const routes: Routes = [
     children: [
       { path: '', component: AnnoncesListComponent, canActivate: [AuthGuard] },
       { path: 'new', component: AnnonceFormComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'CONDUCTEUR' } },
-      { path: ':id/edit', component: AnnonceFormComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'CONDUCTEUR' } }
+      { path: ':id/edit', component: AnnonceFormComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'CONDUCTEUR' } },
+      { path: ':id/details', component: AnnonceDetailsComponent, canActivate: [AuthGuard] }
     ]
   },
   {

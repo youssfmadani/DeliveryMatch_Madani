@@ -38,6 +38,9 @@ import { AnnoncesListComponent } from './components/annonces/annonces-list/annon
 import { AnnonceFormComponent } from './components/annonces/annonce-form/annonce-form.component';
 import { DemandesListComponent } from './components/demandes/demandes-list/demandes-list.component';
 import { DemandeFormComponent } from './components/demandes/demande-form/demande-form.component';
+import { AnnonceDetailsComponent } from './components/annonces/annonce-details/annonce-details.component';
+import { EvaluationsListComponent } from './components/evaluations/evaluations-list/evaluations-list.component';
+import { EvaluationFormComponent } from './components/evaluations/evaluation-form/evaluation-form.component';
 
 // Routing
 import { AppRoutingModule } from './app-routing.module';
@@ -54,7 +57,10 @@ import { AppRoutingModule } from './app-routing.module';
     AnnoncesListComponent,
     AnnonceFormComponent,
     DemandesListComponent,
-    DemandeFormComponent
+    DemandeFormComponent,
+    AnnonceDetailsComponent,
+    EvaluationsListComponent,
+    EvaluationFormComponent
   ],
   imports: [
     BrowserModule,

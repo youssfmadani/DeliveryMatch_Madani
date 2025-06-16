@@ -3,6 +3,7 @@ package com.example.backend.service;
 import com.example.backend.model.Notification;
 import com.example.backend.model.Utilisateur;
 import com.example.backend.repository.NotificationRepository;
+import com.example.backend.repository.UtilisateurRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +16,7 @@ import java.util.List;
 @Transactional
 public class NotificationService {
     private final NotificationRepository notificationRepository;
+    private final UtilisateurRepository utilisateurRepository;
 
     public Notification createNotification(Utilisateur utilisateur, String message) {
         Notification notification = new Notification();
@@ -25,11 +27,15 @@ public class NotificationService {
         return notificationRepository.save(notification);
     }
 
-    public List<Notification> getNotificationsByUtilisateur(Utilisateur utilisateur) {
+    public List<Notification> getNotificationsByUtilisateur(Long utilisateurId) {
+        Utilisateur utilisateur = utilisateurRepository.findById(utilisateurId)
+                .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
         return notificationRepository.findByUtilisateur(utilisateur);
     }
 
-    public List<Notification> getNotificationsNonLues(Utilisateur utilisateur) {
+    public List<Notification> getNotificationsNonLues(Long utilisateurId) {
+        Utilisateur utilisateur = utilisateurRepository.findById(utilisateurId)
+                .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
         return notificationRepository.findByUtilisateurAndLue(utilisateur, false);
     }
 
@@ -40,17 +46,23 @@ public class NotificationService {
         notificationRepository.save(notification);
     }
 
-    public void marquerToutesCommeLues(Utilisateur utilisateur) {
+    public void marquerToutesCommeLues(Long utilisateurId) {
+        Utilisateur utilisateur = utilisateurRepository.findById(utilisateurId)
+                .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
         List<Notification> notifications = notificationRepository.findByUtilisateurAndLue(utilisateur, false);
         notifications.forEach(notification -> notification.setLue(true));
         notificationRepository.saveAll(notifications);
     }
 
-    public Long countNotificationsNonLues(Utilisateur utilisateur) {
+    public Long countNotificationsNonLues(Long utilisateurId) {
+        Utilisateur utilisateur = utilisateurRepository.findById(utilisateurId)
+                .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
         return notificationRepository.countNotificationsNonLues(utilisateur);
     }
 
-    public void supprimerNotificationsLues(Utilisateur utilisateur) {
+    public void supprimerNotificationsLues(Long utilisateurId) {
+        Utilisateur utilisateur = utilisateurRepository.findById(utilisateurId)
+                .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
         notificationRepository.deleteByUtilisateurAndLue(utilisateur, true);
     }
 } 
